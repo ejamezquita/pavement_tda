@@ -67,7 +67,7 @@ def is_cyclic(G, source=None, orientation=None):
         is_cycle = False
     return is_cycle
 
-def generating_cycles(subb, B, neighbors, spath):
+def generating_cycles(subb, B, neighbors, spath, minlength=4):
 
     simple_cycles = []
     dneighs = set()
@@ -87,7 +87,7 @@ def generating_cycles(subb, B, neighbors, spath):
         # Get the simple cycles in this reduced graph
         # Only keep those with B
         for cycle in nx.simple_cycles(subg):
-            if B in cycle:
+            if (B in cycle) and (len(cycle) > minlength):
                 simple_cycles.append(cycle)
         layer += 1
         
